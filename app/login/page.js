@@ -1,36 +1,62 @@
+"use client";
+
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+
 export default function LoginPage() {
+  const [mobile, setMobile] = useState("");
+  const router = useRouter();
+
+  function handleLogin(e) {
+    e.preventDefault();
+
+    if (mobile.length !== 10) {
+      alert("Please enter a valid 10-digit mobile number");
+      return;
+    }
+
+    // Later: OTP + DB verification will be here
+    localStorage.setItem("customer_mobile", mobile);
+
+    router.push("/customer-info");
+  }
+
   return (
-    <main className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
-      <div className="bg-white w-full max-w-md rounded-xl shadow p-6">
-        <h1 className="text-2xl font-bold mb-6 text-center">
-          Login
+    <main className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="bg-white p-6 rounded shadow w-full max-w-sm">
+
+        <h1 className="text-2xl font-bold text-center text-green-700">
+          Customer Login
         </h1>
 
-        <form className="space-y-4">
-          <input
-            type="email"
-            placeholder="Email / Username"
-            className="w-full border rounded px-3 py-2"
-          />
+        <p className="text-sm text-center text-gray-600 mt-2">
+          Login using your mobile number
+        </p>
+
+        <form onSubmit={handleLogin} className="mt-6">
+          <label className="block text-sm font-medium text-gray-700">
+            Mobile Number
+          </label>
 
           <input
-            type="password"
-            placeholder="Password"
-            className="w-full border rounded px-3 py-2"
+            type="number"
+            placeholder="Enter 10-digit mobile number"
+            value={mobile}
+            onChange={(e) => setMobile(e.target.value)}
+            className="w-full mt-2 p-3 border rounded"
           />
-
-          <select className="w-full border rounded px-3 py-2">
-            <option>Vendor</option>
-            <option>Admin</option>
-          </select>
 
           <button
             type="submit"
-            className="w-full bg-black text-white py-2 rounded hover:bg-gray-800"
+            className="w-full mt-4 bg-green-600 text-white py-3 rounded hover:bg-green-700"
           >
-            Login
+            Continue
           </button>
         </form>
+
+        <p className="text-xs text-center text-gray-500 mt-4">
+          OTP verification will be added for security
+        </p>
       </div>
     </main>
   );
