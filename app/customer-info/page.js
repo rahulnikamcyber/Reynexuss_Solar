@@ -38,7 +38,7 @@ export default function CustomerInfoPage() {
         <div className="max-w-6xl mx-auto px-6 flex justify-between items-center">
           <h1 className="text-2xl font-bold">Solar Information Dashboard</h1>
           <a
-            href="https://wa.me/919999999999"
+            href="https://wa.me/917820889778"
             target="_blank"
             className="bg-white text-green-700 px-4 py-2 rounded-lg font-semibold"
           >
@@ -110,7 +110,7 @@ export default function CustomerInfoPage() {
           <div className="flex gap-4">
             <a href="#" aria-label="Facebook">📘</a>
             <a href="#" aria-label="Instagram">📸</a>
-            <a href="https://wa.me/919999999999" aria-label="WhatsApp">💬</a>
+            <a href="https://wa.me/917820889778" aria-label="WhatsApp">💬</a>
           </div>
         </div>
       </footer>
