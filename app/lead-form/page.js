@@ -1,65 +1,56 @@
-export default function LeadForm() {
+export default function LeadFormPage() {
   return (
-    <main style={{ padding: "40px", fontFamily: "sans-serif", maxWidth: "600px" }}>
-      <h1>Customer Lead Form</h1>
+    <main className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
+      <div className="bg-white w-full max-w-md rounded-xl shadow-lg p-6">
+        <h1 className="text-2xl font-bold mb-4 text-center">
+          Customer Lead Form
+        </h1>
 
-      <form>
-        <label>
-          Full Name
-          <br />
-          <input type="text" placeholder="Enter full name" />
-        </label>
+        <form className="space-y-4">
+          <input
+            type="text"
+            placeholder="Full Name"
+            className="w-full border rounded px-3 py-2"
+          />
 
-        <br /><br />
+          <input
+            type="tel"
+            placeholder="Mobile Number"
+            className="w-full border rounded px-3 py-2"
+          />
 
-        <label>
-          Mobile Number
-          <br />
-          <input type="tel" placeholder="Enter mobile number" />
-        </label>
+          <input
+            type="text"
+            placeholder="City"
+            className="w-full border rounded px-3 py-2"
+          />
 
-        <br /><br />
-
-        <label>
-          City
-          <br />
-          <input type="text" placeholder="Enter city" />
-        </label>
-
-        <br /><br />
-
-        <label>
-          Service Type
-          <br />
-          <select>
+          <select className="w-full border rounded px-3 py-2">
             <option>Solar Installation</option>
             <option>Solar Maintenance</option>
-            <option>Electrical Services</option>
             <option>Solar Cleaning</option>
+            <option>Electrical Services</option>
           </select>
-        </label>
 
-        <br /><br />
+          <input
+            type="text"
+            placeholder="Budget"
+            className="w-full border rounded px-3 py-2"
+          />
 
-        <label>
-          Budget
-          <br />
-          <input type="text" placeholder="Enter budget" />
-        </label>
+          <textarea
+            placeholder="Notes"
+            className="w-full border rounded px-3 py-2"
+          />
 
-        <br /><br />
-
-        <label>
-          Notes
-          <br />
-          <textarea placeholder="Additional notes"></textarea>
-        </label>
-
-        <br /><br />
-
-        <button type="submit">Submit Lead</button>
-      </form>
+          <button
+            type="submit"
+            className="w-full bg-black text-white py-2 rounded hover:bg-gray-800"
+          >
+            Submit Lead
+          </button>
+        </form>
+      </div>
     </main>
   );
-  }
-  
+              }
