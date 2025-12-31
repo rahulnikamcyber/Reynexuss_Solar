@@ -1,44 +1,74 @@
 "use client";
 
-import { Bar } from "react-chartjs-2";
+import dynamic from "next/dynamic";
+
+// ✅ Dynamic import (IMPORTANT)
+const Bar = dynamic(
+  () => import("react-chartjs-2").then((mod) => mod.Bar),
+  { ssr: false }
+);
+
 import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
   BarElement,
+  Title,
   Tooltip,
   Legend,
 } from "chart.js";
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Tooltip,
-  Legend
-);
+// ✅ Register chart only on client
+if (typeof window !== "undefined") {
+  ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend
+  );
+}
 
 export default function AdminDashboard() {
   const data = {
-    labels: ["Leads", "Vendors", "Customers"],
+    labels: ["Surat", "Ahmedabad", "Mumbai"],
     datasets: [
       {
-        label: "Platform Stats",
-        data: [12, 5, 20],
-        backgroundColor: "#22c55e",
+        label: "Leads",
+        data: [12, 8, 5],
+        backgroundColor: "#16a34a",
       },
     ],
   };
 
   return (
-    <div style={{ padding: "30px" }}>
-      <h1 style={{ fontSize: "24px", marginBottom: "20px" }}>
-        Admin Dashboard
-      </h1>
+    <main className="min-h-screen bg-gray-100 p-6">
+      <h1 className="text-2xl font-bold mb-6">Admin Dashboard</h1>
 
-      <div style={{ maxWidth: "500px" }}>
+      {/* STATS */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div className="bg-white p-4 rounded shadow">
+          <h2 className="font-semibold">Total Leads</h2>
+          <p className="text-2xl">25</p>
+        </div>
+
+        <div className="bg-white p-4 rounded shadow">
+          <h2 className="font-semibold">Active Vendors</h2>
+          <p className="text-2xl">7</p>
+        </div>
+
+        <div className="bg-white p-4 rounded shadow">
+          <h2 className="font-semibold">Revenue</h2>
+          <p className="text-2xl">₹2,10,000</p>
+        </div>
+      </div>
+
+      {/* CHART */}
+      <div className="bg-white p-6 rounded shadow">
+        <h2 className="font-semibold mb-4">Leads by City</h2>
         <Bar data={data} />
       </div>
-    </div>
+    </main>
   );
 }
